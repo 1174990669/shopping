@@ -1,0 +1,199 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>深圳市星盈科技有限公司</title>
+<link type="text/css" rel="stylesheet" href="css/style.css">
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+
+</head>
+
+<body>
+<div class="top">
+  <div class="topcon">
+    <div class="logo"><h1>深圳市星盈科技有限公司</h1></div>
+    <div class="menu" id="tabs0">
+      <ul class="menu0" id="menu0">
+        <li><a href="index.html" target="middle" style="color: green;">首页</a></li>
+        <li><a href="jian.html" target="middle">公司简介 </a></li>
+        <li><a href="products.html" target="middle">产品介绍</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="dbg"> 
+<script type="text/javascript">
+
+	var kv_img = [
+	{"pic":"images/tab0.jpg","url":"product/product0.html"},
+	{"pic":"images/tab1.jpg","url":"product/product1.html"},
+	{"pic":"images/tab2.jpg","url":"product/product3.html"},
+	{"pic":"images/tab3.jpg","url":"product/product2.html"},
+	];
+</script>
+<div style="background-image: url(images/dbg1.jpg); background-repeat:repeat-x;">
+<div id="mainkv">
+
+</div>
+  <div class="mainbnt">
+  <a id="picurl"></a>
+  <div id="kv_button">
+      <ul><li class=""><a href="#">1</a></li><li class="no"><a href="#">2</a></li><li><a href="#">3</a></li><li><a href="#">4</a></li><li><a href="#">5</a></li><li><a href="#">6</a></li><li><a href="#">7</a></li><li><a href="#">8</a></li><li><a href="#">9</a></li><li><a href="#">10</a></li></ul>
+  </div>
+  </div>
+  </div>
+<script type="text/javascript">
+
+
+    var $kv = $("#mainkv");
+    var kvs1 = [];
+    var kvtime = 5000;
+    var kvlinks = [];
+    var kva = $('#picurl')[0];
+    var kvimg = $("#mainkv img")[0];
+    var $kvbutton;
+    var nowli = 0;
+
+    var delay = 10;
+    var $targetul = $("#kv_button ul").eq(0);
+    $targetul.empty();
+    for (var i = 0; i < kv_img.length; i++) {
+        kvlinks.push(kv_img[i]['url']);
+        kvs1.push(kv_img[i]['pic']);
+        kvtime = 6 * 1000;
+        $targetul.append("<li><a href='#nogo'>" + (i + 1) + "</a></li>");
+    }
+    $kvbutton = $("#kv_button li");
+    $targetul.find("li").eq(0).addClass("no");
+    $kv.css({
+        "background": "url(" + kvs1[0] + ") no-repeat center 0"
+    });
+    if (kva) {
+        // kva.href = kvlinks[nowli];
+    }
+    if ($targetul.find("li").length == 1) {
+        $kvbutton.hide();
+        //return;
+    }
+
+    $("#kv_button li").click(function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        if ($kv.is(":animated")) {
+            return;
+        }
+
+        if ($kv[0].interval1) {
+            clearInterval($kv[0].interval1);
+        }
+        var lis = $("#kv_button")[0].getElementsByTagName("li");
+        var whichli = (function (which) {
+            for (var i = 0; i < lis.length; i++) {
+                if (which == lis[i]) {
+                    return i;
+                }
+            }
+        })(this);
+        //var whichli=$(this).index();
+        nowli = whichli;
+        if (kva) {
+            // kva.href = kvlinks[nowli];
+        }
+        $kv.fadeOut(700, function () {
+            $kv.css({
+                "background": "url(" + kvs1[nowli] + ") no-repeat center 0"
+            });
+            $kv.fadeIn(700);
+            $kvbutton.eq(nowli).addClass("no").siblings().removeClass("no");
+            $kv[0].interval1 = setInterval(function () {
+                nowli++;
+                if (nowli > kvs1.length - 1) {
+                    nowli = 0;
+                }
+                $("#kv_button li").eq(nowli).addClass("no").siblings().removeClass("no");
+                if (kva) {
+                    // kva.href = kvlinks[nowli];
+                }
+                $kv.fadeOut(700, function () {
+                    $kv.css({
+                        "background": "url(" + kvs1[nowli] + ") no-repeat center 0"
+                    });
+                    $kv.fadeIn(700);
+                });
+            }, kvtime);
+
+
+            kvstart();
+
+            $("#mainkv").hover(function () {
+                if ($kv[0].interval1) {
+                    clearInterval($kv[0].interval1)
+                }
+            }, function () {
+                kvstart();
+            });
+        });
+
+        
+    });
+
+    function kvstart() {
+        if ($kv[0].interval1) {
+            clearInterval($kv[0].interval1)
+        }
+        $kv[0].interval1 = setInterval(function () {
+            if ($kv.is(":animated")) {
+                return;
+            }
+            nowli++;
+            if (nowli > kvs1.length - 1) {
+                nowli = 0
+            }
+            if(kva)
+            // kva.href = kvlinks[nowli];
+            $kvbutton.eq(nowli).addClass("no").siblings().removeClass("no");
+            $kv.animate({
+                "opacity": 0
+            }, 700, function () {
+                $kv[0].style.background = "url(" + kvs1[nowli] + ") no-repeat center 0";
+                $kv.animate({
+                    "opacity": 1
+                }, 700);
+            })
+        }, kvtime);
+    }
+
+kvstart();
+
+
+</script>
+<div class="dconbox">
+  <table width="1000" border="0" align="center" cellpadding="0" cellspacing="4">
+    <tr>
+      <td height="37" colspan="3" ><div class="t_add" ><div style="display:inline; float:left;">&nbsp;热点游戏</div>
+      <div style="display:inline;"><a href="">MORE</a>&gt;&gt;&nbsp;</div>
+      </div></td>
+    </tr>
+    <tr>
+       
+          <td width="33%" height="150" align="center" ><a href=""><img src="images/hot0.jpg" width="300" height="150" border="0" /></a></td>
+		   <td width="33%" align="center" ><a href=""><img src="images/hot2.jpg" width="300" height="150" border="0" /></a></td>
+		    <td align="center" ><a href=""><img src="images/hot3.jpg" width="300" height="150" border="0" /></a></td>
+       
+    </tr>
+	<tr  >
+      <td colspan="3"><hr /></td>
+	</tr>
+</table>
+</div>
+</div>
+<div class="footer">
+Copyright © 2017 free2sp.com All Rights Reserved. 粤ICP备18020672号-1<br>
+深圳市星盈科技有限公司 地址: 深圳市龙华新区民治大道优城大厦写字楼B座2207号 电话: 0755-82968558
+</div>
+
+</body>
+
+</html>
